@@ -6,9 +6,9 @@ This project powers Decky plugin store @ https://plugins.deckbrew.xyz/. It is us
 
 ### Running in docker
 
-As standard `docker-compose.yml` file is used for deployment, there is a separate `docker-compose.local.yml` file you 
-can use. Just use `docker-compose -f docker-compose.local.yml up` to bring up the project. You can use any 
-`docker-compose` commands normally as long as you add `-f docker-compose.local.yml` argument.
+As standard `compose.yaml` file is used for deployment, there is a separate `compose.local.yaml` file you 
+can use. Just use `docker compose -f compose.local.yaml up` to bring up the project. You can use any 
+`docker compose` commands normally as long as you add `-f compose.local.yaml` argument.
 
 ### Using Makefile
 
@@ -49,7 +49,7 @@ need to.
 
 ### Running tests
 
-Simply run `make test` to run tests on your local machine. If using development docker-compose file, you shall use
+Simply run `make test` to run tests on your local machine. If using development docker compose file, you shall use
 `make dc/test` instead. 
 
 ### Writing tests

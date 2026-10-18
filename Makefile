@@ -34,10 +34,10 @@ migrations/create:
 	alembic revision
 
 dc/build:
-	docker compose -f docker-compose.local.yml build
+	docker compose -f compose.local.yaml build
 
 dc/%:
-	docker compose -f docker-compose.local.yml run -w /app plugin_store poetry run make $*
+	docker compose -f compose.local.yaml run -w /app plugin_store poetry run make $*
 
 deps/lock:
 	poetry lock --no-update
