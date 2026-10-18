@@ -37,29 +37,26 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ github.token }}
     -
-      name: Determine image tags
-      id: meta
+      name: Determine revision count
+      id: revision
       # language=bash
       run: |-
         # Determine sequential commit number (as of writing this, 257)
         revision="$(git rev-list --count HEAD)"
         echo "Commit count: ${revision}"
-        # Determine first 7 letters of current commit hash (as of writing this, 9f63571)
-        hashshort="$(git rev-parse --short=7 HEAD)"
-        echo "Latest commit short hash: ${hash}"
-        # Determine full hash of the latest commit (as of writing this, 9f63571a74740744486d07e9b76cb607f5fd70b1)
-        hashlong="$(git rev-parse HEAD)"
-        echo "Latest commit long hash: ${hash}"
-        # Create array of tags
-        tags=()
-        tags+=("ghcr.io/${{ github.repository }}:sha-${hashlong}")  # ghcr.io/SteamDeckHomebrew/decky-plugin-store:sha-9f63571a74740744486d07e9b76cb607f5fd70b1
-        # If we're on main, also add revision and latest tags
-        if [ ${{ github.ref == 'refs/heads/main' }} ]; then
-            tags+=("ghcr.io/${{ github.repository }}:r${revision}-${hashshort}")  # ghcr.io/SteamDeckHomebrew/decky-plugin-store:r257-9f63571
-            tags+=("ghcr.io/${{ github.repository }}:latest")  # ghcr.io/SteamDeckHomebrew/decky-plugin-store:latest
-        fi
-        echo "Selected tags: ${tags[*]}"
-        IFS=','; echo "tags=${tags[*]}" >> $GITHUB_OUTPUT
+        echo "revision=${revision}" >> $GITHUB_OUTPUT
+    -
+      uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302  # v6.2.0
+      id: meta
+      with:
+        images: |
+          ghcr.io/${{ github.repository }}
+        flavor: |
+          latest=false
+        # language=csv
+        tags: |
+          type=sha,format=long,prefix=sha-
+          type=sha,format=short,prefix=r${{ steps.revision.outputs.revision }}-
     -
       uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc  # v7.4.0
       with:
