@@ -2,6 +2,7 @@ name: Checks
 
 on:
   pull_request_target:
+  workflow_dispatch: {}  # TODO: Remove this
 
 defaults:
   run:
