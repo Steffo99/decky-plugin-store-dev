@@ -9,13 +9,22 @@ name: Lint
       - ci-target # TODO: Remove this
 
 jobs:
-  test:
-    name: "Test"
+  lint:
+    name: "Lint (${{ matrix.linter }})"
     
     runs-on: ubuntu-latest
     
     permissions:
       contents: read
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        linter:
+          - flake8
+          - isort
+          - black
+          - mypy
     
     steps:
       -
@@ -35,6 +44,6 @@ jobs:
         name: "Install Python dev dependencies"
         run: "poetry install --with=dev"
       -
-        name: "Run tests"
+        name: "Run lint (${{ matrix.linter }})"
         run: |-
-          make test
+          make lint/${{ matrix.linter }}
