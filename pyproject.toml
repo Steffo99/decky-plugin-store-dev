@@ -38,6 +38,13 @@ dependencies = [
     "semver >= 3.1.0, == 3.*",
 ]
 
+[project.urls]
+Website = "https://plugins.deckbrew.xyz/"
+Repository = "https://github.com/SteamDeckHomebrew/decky-plugin-store"
+Issues = "https://github.com/SteamDeckHomebrew/decky-plugin-store/issues"
+Funding = "https://opencollective.com/steamdeckhomebrew"
+Discord = "https://decky.xyz/discord"
+
 [dependency-groups]
 dev = [
     "black >= 26.10.1, == 26.*",
