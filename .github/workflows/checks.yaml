@@ -6,11 +6,6 @@ on:
       - main
   workflow_dispatch: {}  # TODO: Remove this
 
-defaults:
-  run:
-    working-directory: "/app"
-
-
 jobs:
   lint:
     runs-on: ubuntu-latest
