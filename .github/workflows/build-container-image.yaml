@@ -4,11 +4,6 @@ name: "Build container image"
   push:
     branches:
       - ci-target  # TODO: Remove this
-  workflow_dispatch:
-    inputs:
-      tag:
-        type: string
-        description: Image tag
 
 jobs:
   docker-build:
@@ -60,7 +55,7 @@ jobs:
         # use path context instead of Git context
         # https://github.com/docker/build-push-action#git-context
         context: .
-        tags: ${{ github.event.inputs.tag || steps.meta.outputs.tags }}
+        tags: ${{ steps.meta.outputs.tags }}
         # perform a multiplatform build with the previously-installed QEMU
         # https://docs.docker.com/build/building/multi-platform/
         platforms: >-
