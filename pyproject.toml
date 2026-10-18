@@ -86,9 +86,7 @@ profile = "black"
 src_paths = ["plugin_store", "tests"]
 
 [tool.mypy]
-plugins = [
-    "sqlalchemy.ext.mypy.plugin",
-]
+plugins = []
 
 [[tool.mypy.overrides]]
 module = ["discord_webhook", "limits"]
