@@ -6,7 +6,7 @@ name: "Build container image"
       - ci-target  # TODO: Remove this
 
 jobs:
-  docker-build:
+  buildx:
     runs-on: ubuntu-latest
     permissions:
       contents: read
