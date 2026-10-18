@@ -1,4 +1,4 @@
-name: "Build container image"
+name: "Build and publish container image"
 
 "on":
   push:
@@ -7,7 +7,7 @@ name: "Build container image"
 
 jobs:
   buildx:
-    name: "Build image with docker buildx"
+    name: "Build and publish image with docker buildx"
     
     runs-on: ubuntu-latest
     
