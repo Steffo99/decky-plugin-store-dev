@@ -62,11 +62,8 @@ jobs:
         echo "Latest commit long hash: ${hash}"
         echo "hashlong=${hashshort}" >> $GITHUB_OUTPUT
     
-    # Build and push Docker image with Buildx (don't push on PR)
-    # https://github.com/docker/build-push-action
     - name: Build and push Docker image
-      id: build-and-push
-      uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+      uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc  # v7.4.0
       with:
         context: .
         push: ${{ github.event_name != 'pull_request' }}
