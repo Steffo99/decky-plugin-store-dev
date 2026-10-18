@@ -42,8 +42,11 @@ jobs:
           cache: poetry
       -
         name: "Install Python dev dependencies"
-        run: "poetry install --with=dev"
+        # language=bash
+        run: |-
+          poetry install --with=dev
       -
         name: "Run lint (${{ matrix.linter }})"
+        # language=bash
         run: |-
           make lint/${{ matrix.linter }}

@@ -33,8 +33,11 @@ jobs:
           cache: poetry
       -
         name: "Install Python dev dependencies"
-        run: "poetry install --with=dev"
+        # language=bash
+        run: |-
+          poetry install --with=dev
       -
         name: "Run tests"
+        # language=bash
         run: |-
           make test
