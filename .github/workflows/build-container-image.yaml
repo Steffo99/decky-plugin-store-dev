@@ -40,19 +40,28 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ github.token }}
-
-    # Extract metadata (tags, labels) for Docker
-    # https://github.com/docker/metadata-action
-    - name: Extract Docker metadata
+    -
+      name: Determine repository metadata
       id: meta
-      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-      with:
-        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        tags: |
-          type=sha,format=long
-        flavor: |
-          latest=false
-
+      # language=bash
+      run: |-
+        # Determine sequential commit number (as of writing this, 257)
+        revision="$(git rev-list --count HEAD)"
+        echo "Commit count: ${revision}"
+        echo "revision=${revision}" >> $GITHUB_OUTPUT
+        # Determine first 7 letters of current commit hash (as of writing this, 9f63571)
+        hashshort="$(git rev-parse --short=7 HEAD)"
+        echo "Latest commit short hash: ${hash}"
+        echo "hashshort=${hashshort}" >> $GITHUB_OUTPUT
+        # Combine the two forming a sequential tag (as of writing this, r257-9f63571)
+        combined="$(printf "%s-%s" "$revision" "$hash")"
+        echo "Resulting tag: ${combined}"
+        echo "combined=${combined}" >> $GITHUB_OUTPUT
+        # Determine full hash of the latest commit (as of writing this, 9f63571a74740744486d07e9b76cb607f5fd70b1)
+        hashlong="$(git rev-parse HEAD)"
+        echo "Latest commit long hash: ${hash}"
+        echo "hashlong=${hashshort}" >> $GITHUB_OUTPUT
+    
     # Build and push Docker image with Buildx (don't push on PR)
     # https://github.com/docker/build-push-action
     - name: Build and push Docker image
