@@ -12,6 +12,7 @@ license = "AGPL-3.0"  # TODO: Only, or or-later?
 readme = "README.md"
 keywords = []
 classifiers = [
+    "Private :: Do Not Upload",  # application, not a package, not suitable for upload
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.14",
