@@ -21,10 +21,10 @@ jobs:
         linter: [flake8, isort, black, mypy]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - run: "pipx install poetry"
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           cache: poetry
-      - run: "pipx install poetry"
       - run: "poetry install"
       - run: "make lint/${{ matrix.linter }}"
 
@@ -36,9 +36,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - run: "pipx install poetry"
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           cache: poetry
-      - run: "pipx install poetry"
       - run: "poetry install"
       - run: "make test"
