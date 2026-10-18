@@ -23,7 +23,9 @@ dependencies = [
     "alembic >= 1.13.2, == 1.*",
     "aiosqlite >= 0.20.0, == 0.20.*", # for async sqlite in sqlalchemy
     "asgiref >= 3.8.1, == 3.*",
-    "discord-webhook [async] >= 1.4.1, == 1.*",
+    # this will break if Python 4 will ever release, but unfortunately it's hardcoded in the dependency itself
+    # https://github.com/lovvskillz/python-discord-webhook/blob/98cce42971eb752d7a6caf09863031e41178e880/pyproject.toml#L14
+    "discord-webhook [async] >= 1.4.1, == 1.* ; python_version < '4.0'",
     "fastapi >= 0.112.0, == 0.112.*",
     "pydantic >= 1.10.17, == 1.*",
     "python-multipart >= 0.0.18, == 0.0.*",  # for multipart forms in fastapi
