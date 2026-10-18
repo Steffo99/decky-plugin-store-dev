@@ -3,10 +3,10 @@ help:
 	@echo "Read the Makefile plz"
 
 autoformat/black:
-	black plugin_store/ tests/
+	poetry run black plugin_store/ tests/
 
 autoformat/isort:
-	isort plugin_store/ tests/
+	poetry run isort plugin_store/ tests/
 
 autoformat: autoformat/black autoformat/isort
 
@@ -25,13 +25,13 @@ lint/mypy:
 lint: lint/black lint/isort lint/flake8 lint/mypy
 
 migrations/apply:
-	alembic upgrade head
+	poetry run alembic upgrade head
 
 migrations/autogenerate:
-	alembic revision --autogenerate
+	poetry run alembic revision --autogenerate
 
 migrations/create:
-	alembic revision
+	poetry run alembic revision
 
 dc/build:
 	docker compose -f compose.local.yaml build
