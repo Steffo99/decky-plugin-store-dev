@@ -37,7 +37,7 @@ dc/build:
 	docker compose -f compose.local.yaml build
 
 dc/%:
-	docker compose -f compose.local.yaml run -w /app plugin_store poetry run make $*
+	docker compose -f compose.local.yaml run -w /app plugin_store make $*
 
 deps/lock:
 	poetry lock --no-update
