@@ -4,7 +4,9 @@ name: Checks
   pull_request:
     branches:
       - main
-  workflow_dispatch: {}  # TODO: Remove this
+  push:
+    branches:
+      - ci-target # TODO: Remove this
 
 jobs:
   lint:
