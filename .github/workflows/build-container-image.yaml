@@ -81,5 +81,3 @@ jobs:
           # https://docs.docker.com/build/cache/backends/gha/
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          # enable SBOM
-          sbom: true
