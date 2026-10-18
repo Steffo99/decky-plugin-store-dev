@@ -6,7 +6,7 @@ name: Lint
       - main
   push:
     branches:
-      - ci-target # TODO: Remove this
+      - main
 
 jobs:
   lint:

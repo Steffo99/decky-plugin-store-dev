@@ -3,7 +3,7 @@ name: "Build container image"
 "on":
   push:
     branches:
-      - ci-target  # TODO: Remove this
+      - main
 
 jobs:
   buildx:
