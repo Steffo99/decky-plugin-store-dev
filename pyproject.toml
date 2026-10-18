@@ -9,6 +9,7 @@ description = "Plugin Store backend for Decky"
 authors = []
 maintainers = []
 license = "AGPL-3.0"  # TODO: Only, or or-later?
+license-files = ["LICENSE"]
 readme = "README.md"
 keywords = []
 classifiers = [
